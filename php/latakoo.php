@@ -15,7 +15,7 @@
 			private $password = '';
 			private $token = '';
 			private $userid = '';
-			private $endpoint = 'http://latakoo.com/-/api/';
+			private $endpoint = 'latakoo.com';
 			
 			/**
 			 * Sign a query with a given token.
