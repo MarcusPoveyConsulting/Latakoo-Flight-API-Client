@@ -17,7 +17,7 @@
 	try {
 		if ($details = $latakoo->userAuthenticate($email, $password))
 		{
-			echo "User has been authenticated, here are their details...";
+			echo "User has been authenticated, here are their details...\n";
 			print_r($details);
 		}
 	} catch (LatakooFlightException $e) {
