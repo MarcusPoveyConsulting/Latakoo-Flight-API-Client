@@ -23,3 +23,15 @@
 	} catch (LatakooFlightException $e) {
 		echo $e->getMessage();
 	}
+
+
+	// Get my details
+	try {
+		if ($me = $latakoo->userGetById($latakoo->getAuthenticatedUserID()))
+		{
+			echo "That's you that is...\n";
+			print_r($me);
+		}
+	} catch (LatakooFlightException $e) {
+		echo $e->getMessage();
+	}

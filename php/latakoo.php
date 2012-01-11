@@ -29,7 +29,7 @@
 				
 				$now = time();
 				
-				return "$email:$now:" . md5(md5($password . $email) . $query . $now);
+				return "$email:$now:" . md5(md5($password . $token) . $query . $now);
 			}
 			
 			/**
@@ -82,12 +82,12 @@
 				$endpoint .= '?' . $query;
 				
 				// Authenticate command
+				if (($call_details['email']) && ($call_details['password']) && ($call_details['token'])) {
 					$token = self::sign($query, $call_details['email'], $call_details['password'], $call_details['token']);
 				
-				if ($token)
-					$call_details['headers'] += array("X_PFTP_API_TOKEN: $token");
+					$call_details['headers'][] = "X_PFTP_API_TOKEN: $token";
+				}
 					
-				
 				// Construct stream
 				$http = array (
 					'method' => strtoupper($call_details['method']),
@@ -116,6 +116,8 @@
 			}
 			
 			public function getEndpoint() { return $this->endpoint; }
+			public function getAuthenticatedUserID() { return $this->userid; }
+			public function getAuthenticatedUserToken() { return $this->token; }
 			
 			
 			
@@ -158,6 +160,8 @@
 						{
 							$this->token = $authcode[0];
 							$this->userid = $authcode[1];
+							$this->email = $email;
+							$this->password = $password;
 
 							return $result;
 						}
@@ -169,6 +173,35 @@
 				return false;
 			}
 			
+			/**
+			 * Return the details of a specific user.
+			 */
+			public function userGetById($id)
+			{
+				$id = (int)$id;
+				
+				$result = self::execute(
+					'user.get.byid',
+					 array('id' => $id),
+					 array(
+						'email' => $this->email,
+						'password' => $this->password,
+						'token' => $this->token
+					 )
+				);
+				
+				if ($result)
+				{
+					if ($result->status_code == 0) 
+					{
+						return $result;
+					}
+					else
+						throw new LatakooFlightException($result->message);
+				}
+				
+				return false;
+			}
 		
 	}
 
