@@ -52,7 +52,7 @@
 				$method,
 				array $parameters = null, 
 				array $call_details = null,
-				$endpoint = 'https://latakoo.com/-/api/'
+				$endpoint = 'latakoo.com'
 			)
 			{
 				// Sanity check initial variables
@@ -78,10 +78,10 @@
 				}
 				
 				$query = implode('&', $params);
+				$endpoint = "https://$endpoint/-/api/";
 				$endpoint .= '?' . $query;
 				
 				// Authenticate command
-				if (($call_details['token']) && ($call_details['email']) && ($call_details['password']))
 					$token = self::sign($query, $call_details['email'], $call_details['password'], $call_details['token']);
 				
 				if ($token)
@@ -119,7 +119,7 @@
 			
 			
 			
-			public function __construct($endpoint = 'https://latakoo.com/-/api/')
+			public function __construct($endpoint = 'latakoo.com')
 			{
 				$this->endpoint = trim($endpoint);
 			}
