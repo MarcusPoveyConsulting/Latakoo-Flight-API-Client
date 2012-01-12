@@ -5,6 +5,7 @@ import latakoo.flight
 from latakoo.flight import LatakooFlight
 from latakoo.flight import LatakooFlightException
 
+
 email = 'my email addess'
 password = 'my password'
 

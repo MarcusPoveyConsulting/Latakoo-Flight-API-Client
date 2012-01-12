@@ -26,7 +26,7 @@ class LatakooFlight(Latakoo):
                     self.email = email
                     self.password = password
                     
-                    return result
+                    return result['result']
 
             else:
                 raise LatakooFlightException(result['message'])
@@ -40,7 +40,7 @@ class LatakooFlight(Latakoo):
         
         if result:
             if result['status_code'] == 0:
-                return result
+                return result['result']
             else:
                 raise LatakooFlightException(result['message'])
             
