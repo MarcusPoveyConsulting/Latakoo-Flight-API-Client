@@ -163,7 +163,7 @@
 							$this->email = $email;
 							$this->password = $password;
 
-							return $result;
+							return $result->result;
 						}
 					}
 					else
@@ -194,7 +194,7 @@
 				{
 					if ($result->status_code == 0) 
 					{
-						return $result;
+						return $result->result;
 					}
 					else
 						throw new LatakooFlightException($result->message);
