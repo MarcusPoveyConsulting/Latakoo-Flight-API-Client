@@ -72,7 +72,7 @@ class Latakoo:
         for key, value in parameters.iteritems():
             if isinstance(value, dict):
                 for v_key, v_value in value.interitems():
-                    params.append(urllib.quote(v_key) + '['+v_key+']=' +urllib.quote(v_v))
+                    params.append(urllib.quote(key) + '['+v_key+']=' +urllib.quote(v_v))
             else:
                 params.append(urllib.quote(key) + '=' +urllib.quote(value))
 
