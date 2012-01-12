@@ -16,6 +16,11 @@ applications for the latakoo flight product.
  * Python 
  * .NET 3.5 / Mono
 
+== Documentation ==
+
+See the various example.* files for usage documentation.
+
+Further API Documentation can be found at http://docs.latakoo.com
 
 == Author ==
 
