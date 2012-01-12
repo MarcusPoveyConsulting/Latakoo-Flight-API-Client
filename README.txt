@@ -10,6 +10,12 @@ flight API.
 This may be of use to those wishing to connect and build 
 applications for the latakoo flight product.
 
+== Current Bindings ==
+
+ * PHP5
+ * Python 
+ * .NET 3.5 / Mono
+
 
 == Author ==
 
